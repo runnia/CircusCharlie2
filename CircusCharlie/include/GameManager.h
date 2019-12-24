@@ -1,0 +1,130 @@
+#pragma once
+#include "GameLogic.h"
+#include "GameRenderer.h"
+#include "Buttons.h"
+#include "Configuration.h"
+
+// если ввод имеет это значение, значит его не было
+#define INVALID_INPUT 400
+
+enum GameState
+{
+    InMenu,
+    InSettings,
+    InRecords,
+    InGame,
+};
+
+class GameManager
+{
+private:
+    GameState _state;       // состояние игры в данный момент
+    GameLogic _logic;       // компонент игровой логики
+    GameRenderer _renderer; // копонент рендера
+    Configuration _config;  // настройки игры
+    uint8_t _ticks;         // кол-во тиков прошедших с предыдущего обновления игры
+    bool _input;
+
+public:
+    GameManager(UTFT &glcd) : _logic(), _renderer(glcd), _config(){};
+
+    void InitGameManager()
+    {
+        // устанаваливаем начальное состояние игры
+        _state = InMenu;
+        // отрисовываем меню
+        _renderer.RenderMenu();
+ 
+    }
+
+    void Tick(uint16_t &x, uint16_t &y)
+    {
+        // принимаемые параметры - координаты точки в которую мы нажали
+        // если мы в меню или настройках нам нужно знать куда мы нажали, что обработать эту логику
+        // если мы в игре, то счетчик нужен для того, чтобы обновить игру раз в 5 тиков
+        // т.е. у нас происходит 2 кадра (обновления) в секунду, когда мы играем
+        _ticks++;
+
+        if (!(x == INVALID_INPUT && y == INVALID_INPUT))
+        {
+
+            switch (_state)
+            {
+            case InMenu:
+                // проверка на нажатие кнопок игрового меню и выполнение соответствующих обновлений игры
+                if (x > START_GAME_BUTTON_MIN_X && x < START_GAME_BUTTON_MAX_X && y > START_GAME_BUTTON_MIN_Y && y < START_GAME_BUTTON_MAX_Y)
+                {
+                    _state = InGame;
+                    _logic.Start();
+                    _renderer.PrerenderGame();
+                    _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints());
+                }
+
+                if (x > SETTINGS_BUTTON_MIN_X && x < SETTINGS_BUTTON_MAX_X && y > SETTINGS_BUTTON_MIN_Y && y < SETTINGS_BUTTON_MAX_Y)
+                {
+                    _state = InSettings;
+                    _renderer.RenderSettings(_config);
+                }
+                break;
+
+                if (x > RECORDS_BUTTON_MIN_X && x < RECORDS_BUTTON_MAX_X && y > RECORDS_BUTTON_MIN_Y && y < RECORDS_BUTTON_MAX_Y)
+                {
+                    _state = InRecords;
+                    _renderer.RenderRecords(_config);
+                }
+
+            case InSettings:
+                // проверяем не нажал ли пользователь на увеличение или уменьшение скорости игры
+                // проверка на нажатие кнопок меню настроек
+                if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
+                 y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
+                { 
+                    _state = InMenu;
+                    _renderer.RenderMenu();
+                }
+                // проверка того что пользователь нажимает на кнопку и что увелчение/уменьшение скорости возможно
+                if (x > SETTINGS_MINUS_SPEED_BUTTON_MIN_X && x < SETTINGS_MINUS_SPEED_BUTTON_MAX_X &&
+                 y > SETTINGS_MINUS_SPEED_BUTTON_MIN_Y && y < SETTINGS_MINUS_SPEED_BUTTON_MAX_Y && _config.speed >1)
+                 {
+                    _config.SetNewSpeed(_config.speed-1);
+                    _renderer.RenderSettings(_config);
+                 }
+                if (x > SETTINGS_PLUS_SPEED_BUTTON_MIN_X && x < SETTINGS_PLUS_SPEED_BUTTON_MAX_X &&
+                 y > SETTINGS_PLUS_SPEED_BUTTON_MIN_Y && y < SETTINGS_PLUS_SPEED_BUTTON_MAX_Y && _config.speed < 3)
+                 {
+                    _config.SetNewSpeed(_config.speed+1);
+                    _renderer.RenderSettings(_config);
+                 }
+                break;
+            case InRecords:
+                // проверяем нажатие книпки выхода
+                break;
+            case InGame:
+                // проверка на выход из игры
+                // сохранение данных о вводе к следующему обновлению игры (если ввод валидный)
+                // проверка не нужно ли обновлять состояние игры
+                // если нужно обновлять => обновляем на хранимом в данный момент вводе
+                Serial.print("In game pressed");
+                _input = true;
+
+                break;
+            }
+        }
+
+        if (_ticks % (6 - _config.speed) == 0 && _state == InGame)
+        {
+            Serial.println("Update game");
+            if (_logic.Update(_input))
+            {
+                _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints());
+            }
+            else
+            {
+                _state = InMenu;
+                _config.TrySetNewRecord(_logic.GetPoints());
+                _renderer.RenderMenu();
+            }
+            _input = false;
+        }
+    };
+};
