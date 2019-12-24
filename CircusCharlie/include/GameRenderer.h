@@ -152,25 +152,26 @@ public:
             _glcd.fillRect(65, 70, 75, 40);
             _glcd.fillRect(55, 60, 85, 50);
         }
-        _glcd.setColor(VGA_WHITE);
-        _glcd.print("Size", 105, 190 , 270);
 
         //кнопочки для увеличения и уменьшения масштаба
-        if (config.speed > 1)
+        _glcd.setColor(VGA_WHITE);
+        _glcd.print("Size", 105, 190 , 270);
+   
+        if (config.size > 1)
             _glcd.fillRect(130, 285, 170, 245);
        
-        if (config.speed < 3)
-            _glcd.fillRect(130, 75, 170, 35);
+        if (config.size < 2)
+           _glcd.fillRect(130, 75, 170, 35);
 
         String stringSize = String(config.size);
         _glcd.print(stringSize, 145, 170, 270);
 
         _glcd.setColor(VGA_BLACK);
    
-        if (config.speed > 1)
+        if (config.size > 1)
             _glcd.fillRect(145, 280, 155, 250);
        
-        if (config.speed < 3)
+        if (config.size < 2)
         {
             _glcd.fillRect(145, 70, 155, 40);
             _glcd.fillRect(135, 60, 165, 50);

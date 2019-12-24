@@ -97,6 +97,18 @@ public:
                     _config.SetNewSpeed(_config.speed+1);
                     _renderer.RenderSettings(_config);
                  }
+                if (x > SETTINGS_MINUS_SIZE_BUTTON_MIN_X && x < SETTINGS_MINUS_SIZE_BUTTON_MAX_X &&
+                y > SETTINGS_MINUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_MINUS_SPEED_BUTTON_MAX_Y && _config.size > 1)
+                {
+                    _config.SetNewSize(_config.size-1);
+                    _renderer.RenderSettings(_config);
+                }
+                if (x > SETTINGS_PLUS_SIZE_BUTTON_MIN_X && x < SETTINGS_PLUS_SIZE_BUTTON_MAX_X &&
+                y > SETTINGS_PLUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_PLUS_SPEED_BUTTON_MAX_Y && _config.size < 2)
+                {
+                    _config.SetNewSize(_config.size+1);
+                    _renderer.RenderSettings(_config);
+                }
                  
                 break;
             case InRecords:

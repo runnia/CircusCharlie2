@@ -19,6 +19,7 @@ public:
     {
         // считать настройки и рекорды из энергонезависимой памяти
         speed = EEPROM.read(0);
+        size = EEPROM.read(16);
 
         for (int i = 0; i < 3; ++i)
             records[i] = EEPROM.read(i + 1);
