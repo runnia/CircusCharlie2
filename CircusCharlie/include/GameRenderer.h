@@ -7,6 +7,7 @@
 extern uint8_t SmallFont[]; 
 extern uint8_t BigFont[];
 extern uint8_t SevenSegNumFont[];
+char alphabet[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 class GameRenderer
 {
@@ -192,11 +193,25 @@ public:
         _glcd.print("GAME OVER", 110, 230 , 270);
         delay(2000);
 
+        // если игрок установил новый рекорд, то ему предлагается ввести свое имя
         if (score >= config.records[2])
         {
             _glcd.clrScr();
-            _glcd.print("New record!", 40, 230 , 270);
-            _glcd.print("Enter your name:", 50, 230 , 270);
+            _glcd.print("New record!", 20, 230 , 270);
+            _glcd.print("Enter your name:", 40, 280 , 270);
+
+            // кнопочки выбора букв
+            _glcd.fillCircle(83, 250, 10);
+            _glcd.drawRect(105, 270, 145, 230);
+            _glcd.fillCircle(168, 250, 10);
+
+            _glcd.fillCircle(83, 160, 10);
+            _glcd.drawRect(105, 180, 145, 140);
+            _glcd.fillCircle(168, 160, 10);
+
+            _glcd.fillCircle(83, 70, 10);
+            _glcd.drawRect(105, 90, 145, 50);
+            _glcd.fillCircle(168, 70, 10);
         } 
 
         _glcd.setColor(VGA_PURPLE);
