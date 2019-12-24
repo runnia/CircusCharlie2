@@ -58,7 +58,7 @@ public:
                     _state = InGame;
                     _logic.Start();
                     _renderer.PrerenderGame();
-                    _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints());
+                    _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
                 }
 
                 if (x > SETTINGS_BUTTON_MIN_X && x < SETTINGS_BUTTON_MAX_X && y > SETTINGS_BUTTON_MIN_Y && y < SETTINGS_BUTTON_MAX_Y)
@@ -194,13 +194,13 @@ public:
             Serial.println("Update game");
             if (_logic.Update(_input))
             {
-                _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints());
+                _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
             }
             else
             {
                 _state = InEndGame;
                 // _state = InMenu;
-                _config.TrySetNewRecord(_logic.GetPoints());
+                _config.TrySetNewRecord(_logic.GetPoints(), name);
                 // _renderer.RenderMenu();
                 _renderer.RenderEndGame(_config, _logic.GetPoints());
             }

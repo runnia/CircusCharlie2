@@ -45,7 +45,7 @@ public:
 
 
 
-    void TrySetNewRecord(const uint8_t newRecord)
+    void TrySetNewRecord(const uint8_t newRecord, char* name)
     {
         // проверяем превосходит ли новый рекорд сохраненные
         // если да, то перезаписываем
@@ -58,10 +58,12 @@ public:
 
             for (int i = 0; i < 3; ++i)
                 EEPROM.write(i + 1, records[i]);
-
-
-            // for (int i = 4; i < 7; ++i)
-                //EEPROM.write(i, name[i - 4]);
+            for (int i = 10; i < 13; ++i)
+                EEPROM.write(i, EEPROM[i-3]);
+            for (int i = 7; i < 10; ++i)
+                EEPROM.write(i, EEPROM[i-3]);    
+            for (int i = 4; i < 7; ++i)
+                EEPROM.write(i, name[i - 4]);
         }
         else if (newRecord > records[1])
         {
@@ -69,11 +71,17 @@ public:
             records[1] = newRecord;
             for (int i = 1; i < 3; ++i)
                 EEPROM.write(i + 1, records[i]);
+            for (int i = 10; i < 13; ++i)
+                EEPROM.write(i, EEPROM[i-3]);
+            for (int i = 7; i < 10; ++i)
+                EEPROM.write(i, name[i - 4]);     
         }
         else if (newRecord > records[2])
         {
             records[2] = newRecord;
             EEPROM.write(3, records[2]);
+            for (int i = 10; i < 13; ++i)
+                EEPROM.write(i, name[i - 4]);
         }
     }
 };
