@@ -13,6 +13,7 @@ enum GameState
     InSettings,
     InRecords,
     InGame,
+    InEndGame,
 };
 
 class GameManager
@@ -121,6 +122,16 @@ public:
                  }
 
                 break;
+            case InEndGame:
+                // когда игрок проигрывает
+                // _renderer.RenderEndGame(_config);
+                _renderer.RenderWriteName();
+                if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
+                 y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
+                 {
+                     _state = InMenu;
+                     _renderer.RenderMenu();
+                 }
             }
         }
 
@@ -133,9 +144,11 @@ public:
             }
             else
             {
-                _state = InMenu;
+                _state = InEndGame;
+                // _state = InMenu;
                 _config.TrySetNewRecord(_logic.GetPoints());
-                _renderer.RenderMenu();
+                // _renderer.RenderMenu();
+                _renderer.RenderEndGame(_config, _logic.GetPoints());
             }
             _input = false;
         }

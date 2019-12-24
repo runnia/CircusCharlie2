@@ -47,7 +47,7 @@ public:
         _glcd.fillRect(RECORDS_BUTTON_MIN_X, RECORDS_BUTTON_MIN_Y, RECORDS_BUTTON_MAX_X, RECORDS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("RECORDS", 202, 215, 270);
-    };
+    }
 
     void PrerenderGame()
     {
@@ -151,7 +151,7 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.setBackColor(20, 115, 40);
         _glcd.print("BACK", 202,190, 270 );
-    };
+    }
 
     void RenderRecords(Configuration &config)
     {
@@ -174,5 +174,40 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.setBackColor(20, 115, 40);
         _glcd.print("BACK", 202,190, 270 );
-    };
+    }
+    void RenderEndGame(Configuration &config, const uint8_t &score)
+    {   
+        // анимация окончания игры
+        _glcd.clrScr();
+        _glcd.setColor(VGA_WHITE);
+        _glcd.setBackColor(VGA_BLACK);
+        _glcd.setFont(BigFont);
+        _glcd.print("GAME OVER", 110, 230 , 270);
+        delay(1000);
+        _glcd.clrScr();
+        _glcd.setColor(VGA_PURPLE);
+        _glcd.print("GAME OVER", 110, 230 , 270);
+        delay(1000);
+        _glcd.setColor(VGA_WHITE);
+        _glcd.print("GAME OVER", 110, 230 , 270);
+        delay(2000);
+
+        if (score >= config.records[2])
+        {
+            _glcd.clrScr();
+            _glcd.print("New record!", 40, 230 , 270);
+            _glcd.print("Enter your name:", 50, 230 , 270);
+        } 
+
+        _glcd.setColor(VGA_PURPLE);
+        _glcd.fillRect(190, 35, 230, 285);
+        _glcd.setColor(VGA_WHITE);
+        _glcd.setBackColor(VGA_PURPLE);
+        _glcd.print("BACK", 202,190, 270 );
+    }
+
+    void RenderWriteName()
+    {
+
+    }
 };
