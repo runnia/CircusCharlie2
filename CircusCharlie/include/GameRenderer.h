@@ -109,9 +109,6 @@ public:
             _glcd.fillRect(180, 260, 200, 280);
         }
 
-        // _glcd.setColor(VGA_BLACK);
-        // _glcd.fillRect(5, 300, 19, 280);
-
         // отрисовка текущего счета
         _glcd.setBackColor(VGA_BLACK);
         _glcd.setColor(VGA_WHITE);
@@ -156,7 +153,26 @@ public:
         _glcd.print("BACK", 202,190, 270 );
     };
 
-    void RenderRecords(Configuration &config){
-
+    void RenderRecords(Configuration &config)
+    {
+        _glcd.clrScr();
+        _glcd.setColor(VGA_WHITE);
+        _glcd.setBackColor(VGA_BLACK);
+        _glcd.setFont(BigFont);
+        _glcd.print("Records:", 50, 200 , 270);
+        _glcd.print("1.", 100, 300, 270);
+        String stringRecord1 = String(config.records[0]);
+        _glcd.print(stringRecord1, 100, 290, 270);
+        _glcd.print("2.", 120, 300, 270);
+        String stringRecord2 = String(config.records[1]);
+        _glcd.print(stringRecord2, 120, 290, 270);
+        _glcd.print("3.", 140, 300, 270);
+        String stringRecord3 = String(config.records[2]);
+        _glcd.print(stringRecord3, 140, 290, 270);
+        _glcd.setColor(20, 115, 40);
+        _glcd.fillRect(190, 35, 230, 285);
+        _glcd.setColor(VGA_WHITE);
+        _glcd.setBackColor(20, 115, 40);
+        _glcd.print("BACK", 202,190, 270 );
     };
 };

@@ -19,8 +19,8 @@ public:
 
     void SetNewSpeed(const uint8_t newSpeed)
     {
-        // устанавливает новую скорость игры
-        // сохраняем ее в эн память
+        // устанавливаем новую скорость игры
+        // сохраняем ее в энергонезависимую память
 
         speed = newSpeed;
         EEPROM.write(0, newSpeed);
@@ -29,7 +29,7 @@ public:
     void TrySetNewRecord(const uint8_t newRecord)
     {
         // проверяем превосходит ли новый рекорд сохраненные
-        // да => перезаписываем
+        // если да, то перезаписываем
 
         if (newRecord > records[0])
         {

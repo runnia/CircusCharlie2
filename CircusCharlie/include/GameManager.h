@@ -98,6 +98,12 @@ public:
                 break;
             case InRecords:
                 // проверяем нажатие книпки выхода
+                if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
+                 y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
+                { 
+                    _state = InMenu;
+                    _renderer.RenderMenu();
+                }
                 break;
             case InGame:
                 // проверка на выход из игры
