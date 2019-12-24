@@ -3,7 +3,8 @@
 #include "Buttons.h"
 #include "Configuration.h"
 
-extern uint8_t SmallFont[]; //подключение шрифтов из библиотеки
+//подключение шрифтов из библиотеки
+extern uint8_t SmallFont[]; 
 extern uint8_t BigFont[];
 extern uint8_t SevenSegNumFont[];
 
@@ -52,14 +53,16 @@ public:
     {
         _glcd.clrScr();
 
-        _glcd.setColor(VGA_GRAY);
+        _glcd.setColor(VGA_GREEN);
         _glcd.fillRect(200, 320, 240, 0);
 
         _glcd.setColor(VGA_TEAL);
         _glcd.drawLine(30, 320, 30, 0);
 
-        _glcd.print("Score: ",10, 300, 270);
-        _glcd.print("< MENU",10, 70, 270);
+        _glcd.setBackColor(VGA_BLACK);
+        _glcd.setColor(VGA_WHITE);
+        _glcd.print("Score: ",10, 310, 270);
+        _glcd.print("< MENU",10, 100, 270);
     }
 
     void RenderGame(const uint8_t &charlieState, const uint8_t *obstacles, const uint8_t &score)
@@ -87,7 +90,7 @@ public:
         {
             if (obstacles[i] == 1)
             {
-                _glcd.setColor(VGA_GRAY);
+                _glcd.setColor(VGA_GREEN);
                 _glcd.fillRect(180, 320 - 20 * i, 200, 300 - 20 * i);
                 _glcd.setColor(VGA_BLACK);
                 _glcd.fillRect(180, 320 - 20 * (i + 1), 200, 300 - 20 * (i + 1));
@@ -114,7 +117,7 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.setFont(SmallFont);
         String stringScore = String(score);
-        _glcd.print(stringScore, 10, 270, 270);
+        _glcd.print(stringScore, 10, 205, 270);
     }
 
     void RenderSettings(Configuration &config)
