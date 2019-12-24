@@ -9,6 +9,7 @@ class Configuration
 public:
     uint8_t records[3];
     uint8_t speed;
+    uint8_t size;
     //char name[] = "AAA";
     char RecordName1[] = "AAA";
     char RecordName2[] = "AAA";
@@ -26,11 +27,22 @@ public:
     void SetNewSpeed(const uint8_t newSpeed)
     {
         // устанавливаем новую скорость игры
-        // сохраняем ее в энергонезависимую память
+        // сохраняем в энергонезависимую память
 
         speed = newSpeed;
         EEPROM.write(0, newSpeed);
     };
+
+    void SetNewSize(const uint8_t newSize)
+    {
+        // устанавливаем новый масштаб игры
+        // сохраняем в энергонезависимую память
+
+        size = newSize;
+        EEPROM.write(16, newSize);
+    };
+
+
 
     void TrySetNewRecord(const uint8_t newRecord)
     {

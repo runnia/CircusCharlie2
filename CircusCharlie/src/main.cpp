@@ -73,7 +73,7 @@ void loop()
     // // передаем ввод в GameManager
     game.Tick(x, y);
 
-    // EEPROM.write(3,0);
+    EEPROM.write(16,1);
     // for (int i = 1; i < 3; ++i){
     //     EEPROM.write(i,0);
     // }

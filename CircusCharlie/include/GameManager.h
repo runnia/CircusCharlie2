@@ -97,6 +97,7 @@ public:
                     _config.SetNewSpeed(_config.speed+1);
                     _renderer.RenderSettings(_config);
                  }
+                 
                 break;
             case InRecords:
                 // проверяем нажатие книпки выхода
