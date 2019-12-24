@@ -125,7 +125,6 @@ public:
             case InEndGame:
                 // когда игрок проигрывает
                 // _renderer.RenderEndGame(_config);
-                _renderer.RenderWriteName();
                 if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
                  y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
                  {
