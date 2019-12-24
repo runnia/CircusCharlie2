@@ -24,25 +24,25 @@ public:
         _glcd.clrScr();
         _glcd.setFont(BigFont);
 
-        // отрисовать заголовок
+        // отрисовка заголовка
         _glcd.setBackColor(VGA_BLACK);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("Circus Charlie", 50, 270, 270);
 
-        // отрисовать кнопку начала игры
+        // отрисовка кнопки начала игры
         _glcd.setBackColor(20, 115, 40);
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(START_GAME_BUTTON_MIN_X, START_GAME_BUTTON_MIN_Y, START_GAME_BUTTON_MAX_X, START_GAME_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("START", 102, 200, 270);
 
-        // отрисовать кнопку настроек
+        // отрисовка кнопки настроек
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(SETTINGS_BUTTON_MIN_X, SETTINGS_BUTTON_MIN_Y, SETTINGS_BUTTON_MAX_X, SETTINGS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("SETTINGS", 152, 220, 270);
 
-        // отрисовать кнопку рекордов
+        // отрисовка кнопки рекордов
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(RECORDS_BUTTON_MIN_X, RECORDS_BUTTON_MIN_Y, RECORDS_BUTTON_MAX_X, RECORDS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
@@ -114,7 +114,7 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.setFont(SmallFont);
         String stringScore = String(score);
-        _glcd.print(stringScore, 10, 205, 270);
+        _glcd.print(stringScore, 12, 210, 270);
     }
 
     void RenderSettings(Configuration &config)
@@ -133,7 +133,7 @@ public:
             _glcd.fillRect(100, 75, 140, 35);
 
         String stringSpeed = String(config.speed);
-        _glcd.print(stringSpeed, 120, 160, 270);
+        _glcd.print(stringSpeed, 115, 170, 270);
 
         _glcd.setColor(VGA_BLACK);
    

@@ -40,5 +40,17 @@ public:
             for (int i = 0; i < 3; ++i)
                 EEPROM.write(i + 1, records[i]);
         }
+        else if (newRecord > records[1])
+        {
+            records[2] = records[1];
+            records[1] = newRecord;
+            for (int i = 1; i < 3; ++i)
+                EEPROM.write(i + 1, records[i]);
+        }
+        else if (newRecord > records[2])
+        {
+            records[2] = newRecord;
+            EEPROM.write(3, records[2]);
+        }
     }
 };
