@@ -125,6 +125,27 @@ public:
             case InEndGame:
                 // когда игрок проигрывает
                 // _renderer.RenderEndGame(_config);
+                if (x > CHANGE_NAME_BUTTON_1_UP_MIN_X && x < CHANGE_NAME_BUTTON_1_UP_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_1_UP_MIN_Y && y < CHANGE_NAME_BUTTON_1_UP_MAX_Y)
+                    number_of_first_letter = (number_of_first_letter - 1) % 25;
+                if (x > CHANGE_NAME_BUTTON_1_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_1_DOWN_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_1_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_1_DOWN_MAX_Y)
+                    number_of_first_letter = (number_of_first_letter + 1) % 25;
+
+                if (x > CHANGE_NAME_BUTTON_2_UP_MIN_X && x < CHANGE_NAME_BUTTON_2_UP_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_2_UP_MIN_Y && y < CHANGE_NAME_BUTTON_2_UP_MAX_Y)
+                    number_of_second_letter = (number_of_second_letter - 1) % 25;
+                if (x > CHANGE_NAME_BUTTON_2_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_2_DOWN_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_2_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_2_DOWN_MAX_Y)
+                    number_of_second_letter = (number_of_second_letter + 1) % 25;
+                
+                if (x > CHANGE_NAME_BUTTON_3_UP_MIN_X && x < CHANGE_NAME_BUTTON_3_UP_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_3_UP_MIN_Y && y < CHANGE_NAME_BUTTON_3_UP_MAX_Y)
+                    number_of_third_letter = (number_of_third_letter - 1) % 25;
+                if (x > CHANGE_NAME_BUTTON_3_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_3_DOWN_MAX_X &&
+                 y > CHANGE_NAME_BUTTON_3_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_3_DOWN_MAX_Y)
+                    number_of_third_letter = (number_of_third_letter + 1) % 25;
+
                 if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
                  y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
                  {

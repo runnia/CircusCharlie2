@@ -7,7 +7,13 @@
 extern uint8_t SmallFont[]; 
 extern uint8_t BigFont[];
 extern uint8_t SevenSegNumFont[];
-char alphabet[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// алфавит для ввода имени игрока
+
+char alphabet[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char name[4] = "AAA";
+int number_of_first_letter = 0;
+int number_of_second_letter = 0;
+int number_of_third_letter = 0;
 
 class GameRenderer
 {
@@ -197,21 +203,25 @@ public:
         if (score >= config.records[2])
         {
             _glcd.clrScr();
-            _glcd.print("New record!", 20, 230 , 270);
+            _glcd.print("New record!", 20, 245 , 270);
             _glcd.print("Enter your name:", 40, 280 , 270);
 
             // кнопочки выбора букв
             _glcd.fillCircle(83, 250, 10);
             _glcd.drawRect(105, 270, 145, 230);
             _glcd.fillCircle(168, 250, 10);
+            char first_letter = alphabet[number_of_first_letter];
+            _glcd.print(" ",125, 240, 270);
 
             _glcd.fillCircle(83, 160, 10);
             _glcd.drawRect(105, 180, 145, 140);
             _glcd.fillCircle(168, 160, 10);
+            _glcd.print(alphabet[number_of_second_letter],125, 160, 270);
 
             _glcd.fillCircle(83, 70, 10);
             _glcd.drawRect(105, 90, 145, 50);
             _glcd.fillCircle(168, 70, 10);
+            _glcd.print(alphabet[number_of_third_letter],125, 70, 270);
         } 
 
         _glcd.setColor(VGA_PURPLE);
@@ -221,8 +231,5 @@ public:
         _glcd.print("BACK", 202,190, 270 );
     }
 
-    void RenderWriteName()
-    {
-
-    }
+    
 };

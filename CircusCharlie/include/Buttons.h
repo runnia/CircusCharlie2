@@ -41,3 +41,39 @@
 #define IN_GAME_BACK_TO_MENU_BUTTON_MIN_Y 0
 #define IN_GAME_BACK_TO_MENU_BUTTON_MAX_X 30
 #define IN_GAME_BACK_TO_MENU_BUTTON_MAX_Y 100
+
+// ограниичения для кнопок ввода букв имени (первая буква, верхняя кнопка)
+#define CHANGE_NAME_BUTTON_1_UP_MIN_X 73
+#define CHANGE_NAME_BUTTON_1_UP_MIN_Y 240
+#define CHANGE_NAME_BUTTON_1_UP_MAX_X 93
+#define CHANGE_NAME_BUTTON_1_UP_MAX_Y 260
+
+// ограниичения для кнопок ввода букв имени (первая буква, нижняя кнопка)
+#define CHANGE_NAME_BUTTON_1_DOWN_MIN_X 158
+#define CHANGE_NAME_BUTTON_1_DOWN_MIN_Y 240
+#define CHANGE_NAME_BUTTON_1_DOWN_MAX_X 178
+#define CHANGE_NAME_BUTTON_1_DOWN_MAX_Y 260
+
+// ограниичения для кнопок ввода букв имени (вторая буква, верхняя кнопка)
+#define CHANGE_NAME_BUTTON_2_UP_MIN_X 73
+#define CHANGE_NAME_BUTTON_2_UP_MIN_Y 150
+#define CHANGE_NAME_BUTTON_2_UP_MAX_X 93
+#define CHANGE_NAME_BUTTON_2_UP_MAX_Y 170
+
+// ограниичения для кнопок ввода букв имени (вторая буква, нижняя кнопка)
+#define CHANGE_NAME_BUTTON_2_DOWN_MIN_X 158
+#define CHANGE_NAME_BUTTON_2_DOWN_MIN_Y 150
+#define CHANGE_NAME_BUTTON_2_DOWN_MAX_X 178
+#define CHANGE_NAME_BUTTON_2_DOWN_MAX_Y 170
+
+// ограниичения для кнопок ввода букв имени (третья буква, верхняя кнопка)
+#define CHANGE_NAME_BUTTON_3_UP_MIN_X 73
+#define CHANGE_NAME_BUTTON_3_UP_MIN_Y 60
+#define CHANGE_NAME_BUTTON_3_UP_MAX_X 93
+#define CHANGE_NAME_BUTTON_3_UP_MAX_Y 80
+
+// ограниичения для кнопок ввода букв имени (третья буква, нижняя кнопка)
+#define CHANGE_NAME_BUTTON_3_DOWN_MIN_X 158
+#define CHANGE_NAME_BUTTON_3_DOWN_MIN_Y 60
+#define CHANGE_NAME_BUTTON_3_DOWN_MAX_X 178
+#define CHANGE_NAME_BUTTON_3_DOWN_MAX_Y 80
