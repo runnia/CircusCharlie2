@@ -65,13 +65,14 @@ public:
                     _state = InSettings;
                     _renderer.RenderSettings(_config);
                 }
-                break;
+                
 
                 if (x > RECORDS_BUTTON_MIN_X && x < RECORDS_BUTTON_MAX_X && y > RECORDS_BUTTON_MIN_Y && y < RECORDS_BUTTON_MAX_Y)
                 {
                     _state = InRecords;
                     _renderer.RenderRecords(_config);
                 }
+                break;
 
             case InSettings:
                 // проверяем не нажал ли пользователь на увеличение или уменьшение скорости игры
@@ -110,8 +111,14 @@ public:
                 // сохранение данных о вводе к следующему обновлению игры (если ввод валидный)
                 // проверка не нужно ли обновлять состояние игры
                 // если нужно обновлять => обновляем на хранимом в данный момент вводе
-                Serial.print("In game pressed");
+                // Serial.print("In game pressed");
                 _input = true;
+                if (x > IN_GAME_BACK_TO_MENU_BUTTON_MIN_X && x < IN_GAME_BACK_TO_MENU_BUTTON_MAX_X &&
+                 y > IN_GAME_BACK_TO_MENU_BUTTON_MIN_Y && y < IN_GAME_BACK_TO_MENU_BUTTON_MAX_Y)
+                 {
+                    _state = InMenu;
+                    _renderer.RenderMenu();
+                 }
 
                 break;
             }

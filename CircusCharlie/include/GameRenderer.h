@@ -34,19 +34,19 @@ public:
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(START_GAME_BUTTON_MIN_X, START_GAME_BUTTON_MIN_Y, START_GAME_BUTTON_MAX_X, START_GAME_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
-        _glcd.print("START", 102, 280, 270);
+        _glcd.print("START", 102, 200, 270);
 
         // отрисовать кнопку настроек
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(SETTINGS_BUTTON_MIN_X, SETTINGS_BUTTON_MIN_Y, SETTINGS_BUTTON_MAX_X, SETTINGS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
-        _glcd.print("SETTINGS", 152, 280, 270);
+        _glcd.print("SETTINGS", 152, 220, 270);
 
         // отрисовать кнопку рекордов
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(RECORDS_BUTTON_MIN_X, RECORDS_BUTTON_MIN_Y, RECORDS_BUTTON_MAX_X, RECORDS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
-        _glcd.print("RECORDS", 202, 280, 270);
+        _glcd.print("RECORDS", 202, 215, 270);
     };
 
     void PrerenderGame()
@@ -159,16 +159,16 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.setBackColor(VGA_BLACK);
         _glcd.setFont(BigFont);
-        _glcd.print("Records:", 50, 200 , 270);
+        _glcd.print("Records:", 50, 230 , 270);
         _glcd.print("1.", 100, 300, 270);
         String stringRecord1 = String(config.records[0]);
-        _glcd.print(stringRecord1, 100, 290, 270);
+        _glcd.print(stringRecord1, 100, 270, 270);
         _glcd.print("2.", 120, 300, 270);
         String stringRecord2 = String(config.records[1]);
-        _glcd.print(stringRecord2, 120, 290, 270);
+        _glcd.print(stringRecord2, 120, 270, 270);
         _glcd.print("3.", 140, 300, 270);
         String stringRecord3 = String(config.records[2]);
-        _glcd.print(stringRecord3, 140, 290, 270);
+        _glcd.print(stringRecord3, 140, 270, 270);
         _glcd.setColor(20, 115, 40);
         _glcd.fillRect(190, 35, 230, 285);
         _glcd.setColor(VGA_WHITE);

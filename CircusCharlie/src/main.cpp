@@ -68,11 +68,15 @@ void loop()
         Serial.print(", ");
         Serial.print(y);
         Serial.println(")");
-    }
+     }
 
-    // передаем ввод в GameManager
+    // // передаем ввод в GameManager
     game.Tick(x, y);
+
     // EEPROM.write(0,1);
+    // for (int i = 0; i < 13; ++i){
+    //     EEPROM.write(i,0);
+    // }
 
     delay(100);
 }
