@@ -127,30 +127,51 @@ public:
                 // _renderer.RenderEndGame(_config);
                 if (x > CHANGE_NAME_BUTTON_1_UP_MIN_X && x < CHANGE_NAME_BUTTON_1_UP_MAX_X &&
                  y > CHANGE_NAME_BUTTON_1_UP_MIN_Y && y < CHANGE_NAME_BUTTON_1_UP_MAX_Y)
-                    number_of_first_letter = (number_of_first_letter - 1) % 25;
+                {
+                        number_of_first_letter = (number_of_first_letter - 1) % 25;
+                        _renderer.RenderEnterName();
+                }
                 if (x > CHANGE_NAME_BUTTON_1_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_1_DOWN_MAX_X &&
                  y > CHANGE_NAME_BUTTON_1_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_1_DOWN_MAX_Y)
+                 {
                     number_of_first_letter = (number_of_first_letter + 1) % 25;
+                    _renderer.RenderEnterName();
+                 }
+                    
 
                 if (x > CHANGE_NAME_BUTTON_2_UP_MIN_X && x < CHANGE_NAME_BUTTON_2_UP_MAX_X &&
                  y > CHANGE_NAME_BUTTON_2_UP_MIN_Y && y < CHANGE_NAME_BUTTON_2_UP_MAX_Y)
+                 {  
                     number_of_second_letter = (number_of_second_letter - 1) % 25;
+                    _renderer.RenderEnterName();
+                 }
                 if (x > CHANGE_NAME_BUTTON_2_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_2_DOWN_MAX_X &&
                  y > CHANGE_NAME_BUTTON_2_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_2_DOWN_MAX_Y)
+                 {
                     number_of_second_letter = (number_of_second_letter + 1) % 25;
+                    _renderer.RenderEnterName();
+                 }
                 
                 if (x > CHANGE_NAME_BUTTON_3_UP_MIN_X && x < CHANGE_NAME_BUTTON_3_UP_MAX_X &&
                  y > CHANGE_NAME_BUTTON_3_UP_MIN_Y && y < CHANGE_NAME_BUTTON_3_UP_MAX_Y)
+                 {
                     number_of_third_letter = (number_of_third_letter - 1) % 25;
+                    _renderer.RenderEnterName();
+                 }
                 if (x > CHANGE_NAME_BUTTON_3_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_3_DOWN_MAX_X &&
                  y > CHANGE_NAME_BUTTON_3_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_3_DOWN_MAX_Y)
+                 {
                     number_of_third_letter = (number_of_third_letter + 1) % 25;
-
+                    _renderer.RenderEnterName();
+                 }
                 if(x > SETTINGS_BACK_TO_MENU_BUTTON_MIN_X && x < SETTINGS_BACK_TO_MENU_BUTTON_MAX_X &&
                  y > SETTINGS_BACK_TO_MENU_BUTTON_MIN_Y && y < SETTINGS_BACK_TO_MENU_BUTTON_MAX_Y)
-                 {
-                     _state = InMenu;
-                     _renderer.RenderMenu();
+                 {  
+                    name[0] = alphabet[number_of_first_letter];
+                    name[1] = alphabet[number_of_second_letter];
+                    name[2] = alphabet[number_of_third_letter];
+                    _state = InMenu;
+                    _renderer.RenderMenu();
                  }
             }
         }

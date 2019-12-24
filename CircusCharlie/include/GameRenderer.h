@@ -210,25 +210,60 @@ public:
             _glcd.fillCircle(83, 250, 10);
             _glcd.drawRect(105, 270, 145, 230);
             _glcd.fillCircle(168, 250, 10);
-            char first_letter = alphabet[number_of_first_letter];
-            _glcd.print(alphabet[number_of_first_letter],125, 240, 270);
+            String first_letter = String(alphabet[number_of_first_letter]);
+            _glcd.print(first_letter,120, 255, 270);
 
             _glcd.fillCircle(83, 160, 10);
             _glcd.drawRect(105, 180, 145, 140);
             _glcd.fillCircle(168, 160, 10);
-            _glcd.print(alphabet[number_of_second_letter],125, 160, 270);
+            String second_letter = String(alphabet[number_of_second_letter]);
+            _glcd.print(second_letter,120, 165, 270);
 
             _glcd.fillCircle(83, 70, 10);
             _glcd.drawRect(105, 90, 145, 50);
             _glcd.fillCircle(168, 70, 10);
-            _glcd.print(alphabet[number_of_third_letter],125, 70, 270);
-        } 
+            String third_letter = String(alphabet[number_of_third_letter]);
+            _glcd.print(third_letter,120, 75, 270);
 
+            _glcd.setColor(VGA_PURPLE);
+            _glcd.fillRect(190, 35, 230, 285);
+            _glcd.setColor(VGA_WHITE);
+            _glcd.setBackColor(VGA_PURPLE);
+            _glcd.print("OK", 202,175, 270 );
+ 
+        } 
+    }
+    void RenderEnterName()
+    {   
+        _glcd.setBackColor(VGA_BLACK);
+        _glcd.clrScr();
+        _glcd.print("New record!", 20, 245 , 270);
+        _glcd.print("Enter your name:", 40, 280 , 270);
+
+        // кнопочки выбора букв
+        _glcd.fillCircle(83, 250, 10);
+        _glcd.drawRect(105, 270, 145, 230);
+        _glcd.fillCircle(168, 250, 10);
+        String first_letter = String(alphabet[number_of_first_letter]);
+        _glcd.print(first_letter,120, 255, 270);
+
+        _glcd.fillCircle(83, 160, 10);
+        _glcd.drawRect(105, 180, 145, 140);
+        _glcd.fillCircle(168, 160, 10);
+        String second_letter = String(alphabet[number_of_second_letter]);
+        _glcd.print(second_letter,120, 165, 270);
+
+        _glcd.fillCircle(83, 70, 10);
+        _glcd.drawRect(105, 90, 145, 50);
+        _glcd.fillCircle(168, 70, 10);
+        String third_letter = String(alphabet[number_of_third_letter]);
+        _glcd.print(third_letter,120, 75, 270);
+        
         _glcd.setColor(VGA_PURPLE);
         _glcd.fillRect(190, 35, 230, 285);
         _glcd.setColor(VGA_WHITE);
         _glcd.setBackColor(VGA_PURPLE);
-        _glcd.print("BACK", 202,190, 270 );
+        _glcd.print("OK", 202, 175, 270);
     }
 
     

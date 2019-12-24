@@ -1,12 +1,18 @@
 #pragma once
 #include "Arduino.h"
 #include "EEPROM.h"
+#include "GameRenderer.h"
+#include "GameManager.h"
 
 class Configuration
 {
 public:
     uint8_t records[3];
     uint8_t speed;
+    //char name[] = "AAA";
+    char RecordName1[] = "AAA";
+    char RecordName2[] = "AAA";
+    char RecordName3[] = "AAA";
 
     Configuration()
     {
@@ -39,6 +45,10 @@ public:
 
             for (int i = 0; i < 3; ++i)
                 EEPROM.write(i + 1, records[i]);
+
+
+            // for (int i = 4; i < 7; ++i)
+                //EEPROM.write(i, name[i - 4]);
         }
         else if (newRecord > records[1])
         {
