@@ -9,8 +9,8 @@ extern uint8_t BigFont[];
 extern uint8_t SevenSegNumFont[];
 // алфавит для ввода имени игрока
 
-char alphabet[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char name[4] = "AAA";
+char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char name[] = "AAA";
 int number_of_first_letter = 0;
 int number_of_second_letter = 0;
 int number_of_third_letter = 0;
@@ -211,7 +211,7 @@ public:
             _glcd.drawRect(105, 270, 145, 230);
             _glcd.fillCircle(168, 250, 10);
             char first_letter = alphabet[number_of_first_letter];
-            _glcd.print(" ",125, 240, 270);
+            _glcd.print(alphabet[number_of_first_letter],125, 240, 270);
 
             _glcd.fillCircle(83, 160, 10);
             _glcd.drawRect(105, 180, 145, 140);
