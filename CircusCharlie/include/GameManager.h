@@ -151,7 +151,6 @@ public:
                     _renderer.RenderEnterName();
                  }
                     
-
                 if (x > CHANGE_NAME_BUTTON_2_UP_MIN_X && x < CHANGE_NAME_BUTTON_2_UP_MAX_X &&
                  y > CHANGE_NAME_BUTTON_2_UP_MIN_Y && y < CHANGE_NAME_BUTTON_2_UP_MAX_Y)
                  {  
@@ -183,6 +182,11 @@ public:
                     name[0] = alphabet[number_of_first_letter];
                     name[1] = alphabet[number_of_second_letter];
                     name[2] = alphabet[number_of_third_letter];
+                    _state = InMenu;
+                    _renderer.RenderMenu();
+                 }
+                 if (!( _logic.GetPoints()> _config.records[2]))
+                 {
                     _state = InMenu;
                     _renderer.RenderMenu();
                  }

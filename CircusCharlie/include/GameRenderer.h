@@ -270,10 +270,11 @@ public:
         delay(1000);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("GAME OVER", 110, 230 , 270);
-        delay(2000);
+        delay(1000);
+
 
         // если игрок установил новый рекорд, то ему предлагается ввести свое имя
-        if (score >= config.records[2])
+        if (score > config.records[2])
         {
             _glcd.clrScr();
             _glcd.print("New record!", 20, 245 , 270);
@@ -304,7 +305,8 @@ public:
             _glcd.setBackColor(VGA_PURPLE);
             _glcd.print("OK", 202,175, 270 );
  
-        } 
+        }
+        
     }
     void RenderEnterName()
     {   
