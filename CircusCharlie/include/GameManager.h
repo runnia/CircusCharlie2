@@ -57,8 +57,9 @@ public:
                 {
                     _state = InGame;
                     _logic.Start();
-                    _renderer.PrerenderGame();
-                    _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
+                    _renderer.PrerenderGame(_config.color);
+                    //_renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
+                    _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.color);
                 }
 
                 if (x > SETTINGS_BUTTON_MIN_X && x < SETTINGS_BUTTON_MAX_X && y > SETTINGS_BUTTON_MIN_Y && y < SETTINGS_BUTTON_MAX_Y)
@@ -72,6 +73,9 @@ public:
                 {
                     _state = InRecords;
                     _renderer.RenderRecords(_config);
+                    // _state = InEndGame;
+                    //_renderer.RenderEndGame(_config,_logic.GetPoints());
+                    // _renderer.RenderEnterName();
                 }
                 break;
 
@@ -97,16 +101,17 @@ public:
                     _config.SetNewSpeed(_config.speed+1);
                     _renderer.RenderSettings(_config);
                  }
+                // проверка того что пользователь нажимает на кнопку и что изменение цвета возможно
                 if (x > SETTINGS_MINUS_SIZE_BUTTON_MIN_X && x < SETTINGS_MINUS_SIZE_BUTTON_MAX_X &&
-                y > SETTINGS_MINUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_MINUS_SPEED_BUTTON_MAX_Y && _config.size > 1)
+                y > SETTINGS_MINUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_MINUS_SPEED_BUTTON_MAX_Y && _config.color > 1)
                 {
-                    _config.SetNewSize(_config.size-1);
+                    _config.SetNewColor(_config.color-1);
                     _renderer.RenderSettings(_config);
                 }
                 if (x > SETTINGS_PLUS_SIZE_BUTTON_MIN_X && x < SETTINGS_PLUS_SIZE_BUTTON_MAX_X &&
-                y > SETTINGS_PLUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_PLUS_SPEED_BUTTON_MAX_Y && _config.size < 2)
+                y > SETTINGS_PLUS_SIZE_BUTTON_MIN_Y && y < SETTINGS_PLUS_SPEED_BUTTON_MAX_Y && _config.color < 3)
                 {
-                    _config.SetNewSize(_config.size+1);
+                    _config.SetNewColor(_config.color+1);
                     _renderer.RenderSettings(_config);
                 }
                  
@@ -141,13 +146,13 @@ public:
                 if (x > CHANGE_NAME_BUTTON_1_UP_MIN_X && x < CHANGE_NAME_BUTTON_1_UP_MAX_X &&
                  y > CHANGE_NAME_BUTTON_1_UP_MIN_Y && y < CHANGE_NAME_BUTTON_1_UP_MAX_Y)
                 {
-                        number_of_first_letter = (number_of_first_letter - 1) % 25;
+                        number_of_first_letter = (number_of_first_letter - 1 < 0) ? 25 : number_of_first_letter;
                         _renderer.RenderEnterName();
                 }
                 if (x > CHANGE_NAME_BUTTON_1_DOWN_MIN_X && x < CHANGE_NAME_BUTTON_1_DOWN_MAX_X &&
                  y > CHANGE_NAME_BUTTON_1_DOWN_MIN_Y && y < CHANGE_NAME_BUTTON_1_DOWN_MAX_Y)
                  {
-                    number_of_first_letter = (number_of_first_letter + 1) % 25;
+                    number_of_first_letter = (number_of_first_letter + 1 > 25) ? 0 : number_of_first_letter;
                     _renderer.RenderEnterName();
                  }
                     
@@ -198,7 +203,7 @@ public:
             Serial.println("Update game");
             if (_logic.Update(_input))
             {
-                _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
+                _renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.color);
             }
             else
             {

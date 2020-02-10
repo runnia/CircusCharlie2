@@ -36,7 +36,9 @@ uint16_t x = -1;
 uint16_t y = -1;
 
 void setup()
+
 {
+    //EEPROM.write(3,1);
     Serial.begin(9600);
     _glcd.InitLCD();
     _glcd.clrScr();
@@ -74,7 +76,7 @@ void loop()
     game.Tick(x, y);
 
     // EEPROM.write(16,1);
-    EEPROM.write(4,"fgg");
+    //EEPROM.write(3,1);
     // for (int i = 1; i < 3; ++i){
     //     EEPROM.write(i,0);
     // }
