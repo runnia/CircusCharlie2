@@ -104,10 +104,10 @@ public:
             }
             
             if(hoops[0] == 0)
-            {
+            {   
                 _glcd.setColor(currentColor);
                 _glcd.fillRect(110, 320, 170, 301);
-                if (obstacles[1] == 0)
+                if (hoops[1] == 0)
                     _glcd.fillRect(110, 320, 170, 300);
             }
             // отрисовка препятствий
@@ -121,6 +121,7 @@ public:
                     _glcd.fillRect(180, 320 - 20 * (i + 1)-1, 199, 300 - 20 * (i + 1)); 
                     _glcd.setColor(VGA_BLACK);
                     _glcd.drawLine(200,320 - 20 * (i + 1)-1,200,300 - 20 * (i + 1));
+                    
                 }
             }
             
@@ -131,8 +132,10 @@ public:
                 _glcd.setColor(VGA_BLACK);
                 _glcd.drawLine(200,320,200,300);
                 if (obstacles[1] == 0)
+                {
                     _glcd.setColor(currentColor);
                     _glcd.fillRect(180, 320, 199, 300);
+                }
             }
 
             // отрисовка персонажа
@@ -151,13 +154,20 @@ public:
                     _glcd.fillRect(180, 260, 200, 280);
                     _glcd.setColor(VGA_BLACK);
                     _glcd.drawLine(200,260,200,280);
+                    if (obstacles[2] == 1)
+                    {
+                    _glcd.setColor(VGA_PURPLE);
+                    _glcd.fillRect(180, 260, 200, 280);
+                    }
                 }
                 _glcd.setColor(VGA_RED);
                 _glcd.fillRect(140, 260, 160, 280);
             }
-
-            //отрисовка Чарли исправить
             
+
+
+            
+        //изменение размера   
         // if (size == 2)
         // {
         //     // отрисовка персонажа
@@ -268,8 +278,6 @@ public:
             _glcd.fillRect(130,180,170,140);
         }
 
-
-
         // _glcd.setColor(VGA_BLACK);
    
         // if (config.size > 1)
@@ -329,7 +337,6 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.print("GAME OVER", 110, 230 , 270);
         delay(1000);
-
 
         // если игрок установил новый рекорд, то ему предлагается ввести свое имя
         if (score > config.records[2])

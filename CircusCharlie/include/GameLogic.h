@@ -63,11 +63,11 @@ public:
     bool Update(bool input)
     {
         // если ввод был, то перемещаем чарли в воздух (если он уже не находится в воздухе)
-        for (int i = 0; i < LEVEL_SIZE; ++i)
-        {
-            Serial.print(_level[i]);
-            Serial.print(" ");
-        }
+        // for (int i = 0; i < LEVEL_SIZE; ++i)
+        // {
+        //     Serial.print(_level[i]);
+        //     Serial.print(" ");
+        // }
 
         if (input)
             if (_charlieState == 0)
@@ -105,11 +105,11 @@ public:
         return _score;
     }
     // возвращает состояние уровня в данный момент (состоит из ноликов и единичек, 1 - препятствие, 0 - его отсутствие)
-    uint8_t *GetLevel()
+    uint8_t *GetHoop()
     {
         return _level;
     }
-    uint8_t *GetHoop()
+    uint8_t *GetLevel()
     {
         return _level2;
     }
