@@ -9,6 +9,7 @@ private:
     // 0 - на земле, 1,2 - в воздухе, 3 - в воздухе падает (в слудющем кадре упадет на землю)
     uint8_t _charlieState;
     uint8_t _score;
+    uint8_t _lives;
     uint8_t _level[LEVEL_SIZE]; //hoop
     uint8_t _level2[LEVEL_SIZE]; //obstacle
 
@@ -36,9 +37,14 @@ private:
     };
     
     // проверка того что игра еще не закончена
-    bool IsEnd()
-    {
-        return _charlieState == 0 && _level2[2] == 1;
+    bool IsEnd(uint8_t lives)
+    {   
+        if(_charlieState == 0 && _level2[2] == 1)
+            lives--;
+        if (lives == 3 && lives == 2 && lives == 1)
+            return true;
+        if (lives == 0)
+            return false;
     };
 
 public:
@@ -48,6 +54,7 @@ public:
     {
         _charlieState = 0;
         _score = 0;
+        _lives = 3;
 
         for (int i = 0; i < LEVEL_SIZE; ++i)
         {
@@ -91,7 +98,7 @@ public:
         GenerateNewHoop();
         GenerateNewObstacle();
 
-        return !IsEnd();
+        return !IsEnd(_lives);
     };
 
     // возвращает состояние Чарли в данный момент
@@ -112,5 +119,10 @@ public:
     uint8_t *GetLevel()
     {
         return _level2;
+    }
+    // возвращает количество жизней персонажа 3,2,1 или 0
+    uint8_t GetLives()
+    {
+        return _lives;
     }
 };

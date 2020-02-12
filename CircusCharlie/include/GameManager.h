@@ -59,7 +59,7 @@ public:
                     _logic.Start();
                     _renderer.PrerenderGame(_config.color);
                     //_renderer.RenderGame(_logic.GetCharlieState(), _logic.GetLevel(), _logic.GetPoints(),_config.size);
-                    _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color);
+                    _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color,_logic.GetLives());
                 }
 
                 if (x > SETTINGS_BUTTON_MIN_X && x < SETTINGS_BUTTON_MAX_X && y > SETTINGS_BUTTON_MIN_Y && y < SETTINGS_BUTTON_MAX_Y)
@@ -203,7 +203,7 @@ public:
             Serial.println("Update game");
             if (_logic.Update(_input))
             {
-                _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color);
+                _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color,_logic.GetLives());
             }
             else
             {

@@ -82,7 +82,7 @@ public:
         _glcd.print("< MENU",10, 100, 270);
     }
 
-    void RenderGame(const uint8_t &charlieState,const uint8_t *hoops, const uint8_t *obstacles, const uint8_t &score, const uint8_t &color)
+    void RenderGame(const uint8_t &charlieState,const uint8_t *hoops, const uint8_t *obstacles, const uint8_t &score, const uint8_t &color, const uint8_t &lives)
     {       
             if (color == 1)
                 currentColor = VGA_BLUE;
@@ -164,6 +164,14 @@ public:
                 _glcd.fillRect(140, 260, 160, 280);
             }
             
+            //отрисовка жизней
+            _glcd.setColor(VGA_BLACK);
+            _glcd.fillRect(45, 50, 35, 0);
+            for (int i = 1; i <= lives; ++i)
+            {
+             _glcd.setColor(VGA_RED);   
+             _glcd.fillCircle(45,i*15,5);
+            }
 
 
             
