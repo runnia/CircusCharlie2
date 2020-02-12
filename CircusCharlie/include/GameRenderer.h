@@ -165,13 +165,28 @@ public:
             }
             
             //отрисовка жизней
-            _glcd.setColor(VGA_BLACK);
-            _glcd.fillRect(45, 50, 35, 0);
+            
             for (int i = 1; i <= lives; ++i)
             {
              _glcd.setColor(VGA_RED);   
              _glcd.fillCircle(45,i*15,5);
             }
+            if (lives == 2)
+            {
+            _glcd.setColor(VGA_BLACK);
+            _glcd.fillRect(40, 50, 50, 40);
+            }
+            if (lives == 1)
+            {
+            _glcd.setColor(VGA_BLACK);
+            _glcd.fillRect(40, 35, 50, 25);
+            }
+            if (lives == 0)
+            {
+            _glcd.setColor(VGA_BLACK);
+            _glcd.fillRect(40, 20, 50, 10);
+            }
+
 
 
             

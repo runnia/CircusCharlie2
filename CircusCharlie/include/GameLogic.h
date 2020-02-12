@@ -39,12 +39,10 @@ private:
     // проверка того что игра еще не закончена
     bool IsEnd(uint8_t lives)
     {   
-        if(_charlieState == 0 && _level2[2] == 1)
-            lives--;
-        if (lives == 3 && lives == 2 && lives == 1)
-            return true;
-        if (lives == 0)
-            return false;
+        // if (lives == 3 && lives == 2 && lives == 1)
+        //return true;
+        // if (lives == 0)
+        //     return false;
     };
 
 public:
@@ -70,12 +68,6 @@ public:
     bool Update(bool input)
     {
         // если ввод был, то перемещаем чарли в воздух (если он уже не находится в воздухе)
-        // for (int i = 0; i < LEVEL_SIZE; ++i)
-        // {
-        //     Serial.print(_level[i]);
-        //     Serial.print(" ");
-        // }
-
         if (input)
             if (_charlieState == 0)
                 _charlieState = 1;
@@ -94,11 +86,16 @@ public:
 
         if (_level[2] == 1 && _charlieState != 0)
             _score++;
+        if(_charlieState == 0 && _level2[2] == 1)
+            _lives--;
 
         GenerateNewHoop();
         GenerateNewObstacle();
-
-        return !IsEnd(_lives);
+        if (_lives)
+            return true;
+        else
+            return false;
+        
     };
 
     // возвращает состояние Чарли в данный момент
