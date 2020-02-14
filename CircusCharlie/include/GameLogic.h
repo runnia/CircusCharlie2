@@ -2,7 +2,9 @@
 #include "Arduino.h"
 
 #define LEVEL_SIZE 16
-
+//extern unsigned short charlie[368];
+//extern const unsigned short charlie1[368];
+extern int color;
 class GameLogic
 {
 private:
@@ -37,13 +39,13 @@ private:
     };
     
     // проверка того что игра еще не закончена
-    bool IsEnd(uint8_t lives)
-    {   
-        // if (lives == 3 && lives == 2 && lives == 1)
-        //return true;
-        // if (lives == 0)
-        //     return false;
-    };
+    // bool IsEnd(uint8_t lives)
+    // {   
+    //     // if (lives == 3 && lives == 2 && lives == 1)
+    //     //return true;
+    //     // if (lives == 0)
+    //     //     return false;
+    // };
 
 public:
     GameLogic(){};
@@ -61,6 +63,8 @@ public:
         }
         GenerateNewHoop();
         GenerateNewObstacle();
+       
+        
     };
 
     // принимает данные о том, был ввод или нет

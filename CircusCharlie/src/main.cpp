@@ -4,6 +4,7 @@
 #include <EEPROM.h>
 #include "GameManager.h"
 
+
 const uint8_t RS = A2;
 const uint8_t WR = A1;
 const uint8_t CS = A3;
@@ -34,6 +35,8 @@ TouchScreen ts = TouchScreen(XP, YP, XM, YM);
 GameManager game(_glcd);
 uint16_t x = -1;
 uint16_t y = -1;
+
+
 
 void setup()
 

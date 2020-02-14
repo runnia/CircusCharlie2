@@ -220,6 +220,7 @@ class UTFT
     uint8_t	getFontYsize();
     void	drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int scale = 1);
     void	drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int deg, int rox, int roy);
+    void  drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int deg, int rox, int roy, unsigned short bgColor,unsigned short trColor);
     void	lcdOff();
     void	lcdOn();
     void	setContrast(char c);

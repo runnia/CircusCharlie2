@@ -1165,6 +1165,7 @@ void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int sca
       for (tc = 0; tc < (sx * sy); tc++)
       {
         col = pgm_read_word(&data[tc]);
+        //col = data[tc];
         LCD_Write_DATA(col >> 8, col & 0xff);
       }
       sbi(P_CS, B_CS);
@@ -1178,6 +1179,7 @@ void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int sca
         for (tx = sx - 1; tx >= 0; tx--)
         {
           col = pgm_read_word(&data[(ty * sx) + tx]);
+          //col = data[ty*sx+tx];
           LCD_Write_DATA(col >> 8, col & 0xff);
         }
       }
@@ -1196,6 +1198,7 @@ void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int sca
           for (tx = 0; tx < sx; tx++)
           {
             col = pgm_read_word(&data[(ty * sx) + tx]);
+            //col = data[ty*sx+tx];
             for (tsx = 0; tsx < scale; tsx++)
               LCD_Write_DATA(col >> 8, col & 0xff);
           }
@@ -1213,6 +1216,8 @@ void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int sca
           for (tx = sx - 1; tx >= 0; tx--)
           {
             col = pgm_read_word(&data[(ty * sx) + tx]);
+            //col = data[ty*sx+tx];
+            
             for (tsx = 0; tsx < scale; tsx++)
               LCD_Write_DATA(col >> 8, col & 0xff);
           }
@@ -1240,7 +1245,39 @@ void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int deg
       for (tx = 0; tx < sx; tx++)
       {
         col = pgm_read_word(&data[(ty * sx) + tx]);
+        //col = data[ty*sx+tx];
+        newx = x + rox + (((tx - rox) * cos(radian)) - ((ty - roy) * sin(radian)));
+        newy = y + roy + (((ty - roy) * cos(radian)) + ((tx - rox) * sin(radian)));
 
+        setXY(newx, newy, newx, newy);
+        LCD_Write_DATA(col >> 8, col & 0xff);
+      }
+    sbi(P_CS, B_CS);
+  }
+  clrXY();
+}
+
+void UTFT::drawBitmap(int x, int y, int sx, int sy, bitmapdatatype data, int deg, int rox, int roy, unsigned short bgColor,unsigned short trColor)
+{
+  unsigned int col;
+  int tx, ty, newx, newy;
+  double radian;
+  radian = deg * 0.0175;
+
+  //if (deg == 0)
+    //drawBitmap(x, y, sx, sy, data);
+  //else
+  {
+    cbi(P_CS, B_CS);
+    for (ty = 0; ty < sy; ty++)
+      for (tx = 0; tx < sx; tx++)
+      {
+        col = pgm_read_word(&data[(ty * sx) + tx]);
+        //col = data[ty*sx+tx];
+        if (col == trColor)
+        {
+          col = bgColor;
+        }
         newx = x + rox + (((tx - rox) * cos(radian)) - ((ty - roy) * sin(radian)));
         newy = y + roy + (((ty - roy) * cos(radian)) + ((tx - rox) * sin(radian)));
 
