@@ -6,7 +6,6 @@
 #include "charlie2.c"
 #include "fire1.c"
 #include "fire2.c"
-#include "background1.c"
 #include "heart.c"
 
 //unsigned short charlie[368]={};
@@ -63,6 +62,7 @@ public:
         _glcd.fillRect(RECORDS_BUTTON_MIN_X, RECORDS_BUTTON_MIN_Y, RECORDS_BUTTON_MAX_X, RECORDS_BUTTON_MAX_Y);
         _glcd.setColor(VGA_WHITE);
         _glcd.print("RECORDS", 202, 215, 270);
+        
     }
 
     // void MakeTransparent(const unsigned short src[], unsigned short dest[], 
@@ -115,7 +115,7 @@ public:
         // _glcd.fillRect(110, 20, 80, 0);
         // _glcd.setColor(VGA_AQUA);
         // _glcd.fillRect(110, 60, 80, 40);
-        _glcd.setColor(VGA_AQUA);
+        _glcd.setColor(VGA_AQUA); //отрисовка цветного задника
         for (int i = 0; i < 320;i+= 40)
         {
             _glcd.fillRect(110, i+20, 80, i);   
@@ -137,7 +137,7 @@ public:
         }
     }
 
-    void RenderGame(const uint8_t &charlieState,const uint8_t *hoops, const uint8_t *obstacles, const uint8_t &score, const uint8_t &color, const uint8_t &lives)
+    void RenderGame(const uint8_t &charlieState,const uint8_t *hoops, const uint8_t *obstacles, const uint8_t &score, const uint8_t &color, const uint8_t &lives, const uint8_t *obstacles_state)
     {       
             if (color == 1)
                 currentColor = VGA_BLUE;
@@ -170,28 +170,37 @@ public:
             {
                 if (obstacles[i] == 1)
                 {
-                    _glcd.setColor(VGA_PURPLE);
-                    _glcd.fillRect(180, 320 - 20 * i, 199, 300 - 20 * i);
+                    //_glcd.setColor(VGA_PURPLE);
+                    //_glcd.fillRect(180, 320 - 20 * i, 199, 300 - 20 * i);
+                    if(obstacles_state[i] == 0)
+                    {
+                    _glcd.drawBitmap (178, 320 - 20 * i,18, 26, fire1, 270, 9,13, currentColor, 0);
+                    }
+                    else
+                    {
+                    _glcd.drawBitmap (178, 320 - 20 * i,18, 26, fire2, 270, 9,13, currentColor, 0);
+                    }
                     _glcd.setColor(currentColor);
-                    _glcd.fillRect(180, 320 - 20 * (i + 1)-1, 199, 300 - 20 * (i + 1)); 
+                    // _glcd.fillRect(170, 320 -  18 * (i+1),199,20 -  18 * (i+2));
+                    _glcd.fillRect(173, 320 - 20 * i + 3, 199, 300 - 20 * (i + 1)); 
                     _glcd.setColor(VGA_BLACK);
                     _glcd.drawLine(200,320 - 20 * (i + 1)-1,200,300 - 20 * (i + 1));
-                    
                 }
             }
             
             if(obstacles[0] == 0)
             {
                 _glcd.setColor(currentColor);
-                _glcd.fillRect(180, 320, 199, 300);
+                _glcd.fillRect(173, 320, 198, 300);
                 _glcd.setColor(VGA_BLACK);
                 _glcd.drawLine(200,320,200,300);
                 if (obstacles[1] == 0)
                 {
                     _glcd.setColor(currentColor);
-                    _glcd.fillRect(180, 320, 199, 300);
+                    _glcd.fillRect(173, 320, 198, 300);
                 }
             }
+
             // отрисовка персонажа
             if (charlieState == 0)
             {

@@ -14,6 +14,7 @@ private:
     uint8_t _lives;
     uint8_t _level[LEVEL_SIZE]; //hoop
     uint8_t _level2[LEVEL_SIZE]; //obstacle
+    uint8_t _obstacles_state[LEVEL_SIZE]; 
 
     void GenerateNewHoop()
     {
@@ -38,6 +39,22 @@ private:
             _level2[LEVEL_SIZE - 1] = 1;
     };
     
+    void ChangeObstaclesState()
+    {
+        for (int i= 0; i < 16; i++)
+        {
+            if (_obstacles_state[i] == 1)
+            {
+                _obstacles_state[i] = 0;
+            }
+            else
+            {
+                _obstacles_state[i] = 1;
+            }
+            
+        }
+    };
+
     // проверка того что игра еще не закончена
     // bool IsEnd(uint8_t lives)
     // {   
@@ -60,10 +77,10 @@ public:
         {
             _level[i] = 0;
             _level2[i] = 0;
+            _obstacles_state[i] = 0;
         }
         GenerateNewHoop();
         GenerateNewObstacle();
-       
         
     };
 
@@ -95,6 +112,7 @@ public:
 
         GenerateNewHoop();
         GenerateNewObstacle();
+        ChangeObstaclesState();
         if (_lives)
             return true;
         else
@@ -120,6 +138,10 @@ public:
     uint8_t *GetLevel()
     {
         return _level2;
+    }
+    uint8_t *GetObstaclesState()
+    {
+        return _obstacles_state;
     }
     // возвращает количество жизней персонажа 3,2,1 или 0
     uint8_t GetLives()
