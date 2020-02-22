@@ -104,14 +104,37 @@ public:
         _glcd.setColor(VGA_WHITE);
         _glcd.print("Score: ",10, 310, 270);
         _glcd.print("< MENU",10, 100, 270);
-        _glcd.drawBitmap (60,270,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,230,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,190,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,150,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,110,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,70,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,30,40, 60, background1, 270, 20,30);
-        _glcd.drawBitmap (60,-10,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,270,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,230,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,190,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,150,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,110,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,70,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,30,40, 60, background1, 270, 20,30);
+        // _glcd.drawBitmap (60,-10,40, 60, background1, 270, 20,30);
+        // _glcd.fillRect(110, 20, 80, 0);
+        // _glcd.setColor(VGA_AQUA);
+        // _glcd.fillRect(110, 60, 80, 40);
+        _glcd.setColor(VGA_AQUA);
+        for (int i = 0; i < 320;i+= 40)
+        {
+            _glcd.fillRect(110, i+20, 80, i);   
+        }
+        _glcd.setColor(VGA_WHITE);
+        for (int i = 20; i < 340; i+= 40)
+        {
+            _glcd.fillRect(110, i+20, 80, i);
+        }
+        _glcd.setColor(VGA_YELLOW);
+        for (int i = 0; i < 320;i+= 40)
+        {
+            _glcd.fillRect(80, i+20, 70, i);   
+        }
+        _glcd.setColor(VGA_RED);
+        for (int i = 20; i < 340; i+= 40)
+        {
+            _glcd.fillRect(80, i+20, 70, i);
+        }
     }
 
     void RenderGame(const uint8_t &charlieState,const uint8_t *hoops, const uint8_t *obstacles, const uint8_t &score, const uint8_t &color, const uint8_t &lives)
