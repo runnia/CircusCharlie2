@@ -2,8 +2,6 @@
 #include "Arduino.h"
 
 #define LEVEL_SIZE 16
-//extern unsigned short charlie[368];
-//extern const unsigned short charlie1[368];
 extern int color;
 class GameLogic
 {
@@ -15,6 +13,7 @@ private:
     uint8_t _level[LEVEL_SIZE]; //hoop
     uint8_t _level2[LEVEL_SIZE]; //obstacle
     uint8_t _obstacles_state[LEVEL_SIZE]; 
+    uint8_t _game_lenght;
 
     void GenerateNewHoop()
     {
@@ -72,6 +71,7 @@ public:
         _charlieState = 0;
         _score = 0;
         _lives = 3;
+        _game_lenght = 100;
 
         for (int i = 0; i < LEVEL_SIZE; ++i)
         {
@@ -107,12 +107,17 @@ public:
 
         if (_level[2] == 1 && _charlieState != 0)
             _score++;
-        if(_charlieState == 0 && _level2[2] == 1)
+        if(_charlieState == 0 && _level2[3] == 1)
             _lives--;
-
-        GenerateNewHoop();
-        GenerateNewObstacle();
+        if (_game_lenght > 0)
+        {
+            GenerateNewHoop();
+            GenerateNewObstacle();
+            _game_lenght -=1;
+        }
         ChangeObstaclesState();
+        
+        Serial.print(_game_lenght);
         if (_lives)
             return true;
         else

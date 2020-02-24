@@ -127,7 +127,7 @@ public:
                 break;
             case InGame:
                 // проверка на выход из игры
-                // сохранение данных о вводе к следующему обновлению игры (если ввод валидный)
+                // сохранение данных о вводе к следующему обновлению игры 
                 // проверка не нужно ли обновлять состояние игры
                 // если нужно обновлять => обновляем на хранимом в данный момент вводе
                 // Serial.print("In game pressed");
@@ -199,21 +199,32 @@ public:
         }
 
         if (_ticks % (6 - _config.speed) == 0 && _state == InGame)
-        {
-            Serial.println("Update game");
-            if (_logic.Update(_input))
+        {   
+            if (_renderer.renderCount > 0)
             {
-                _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color,_logic.GetLives(),_logic.GetObstaclesState());
+                if (_logic.Update(_input))
+                {
+                    _renderer.RenderGame(_logic.GetCharlieState(),_logic.GetHoop(), _logic.GetLevel(), _logic.GetPoints(),_config.color,_logic.GetLives(),_logic.GetObstaclesState());
+                }
+                else
+                {
+                    _state = InEndGame;
+                    // _state = InMenu;
+                    _config.TrySetNewRecord(_logic.GetPoints(), name);
+                    // _renderer.RenderMenu();
+                    _renderer.RenderEndGame(_config, _logic.GetPoints());
+                }
+                _input = false;
+                _renderer.renderCount--;
             }
-            else
+            if (_renderer.renderCount == 0)
             {
+                _renderer.RenderWin(_config.color);
                 _state = InEndGame;
-                // _state = InMenu;
+                _renderer.renderCount = 116;
                 _config.TrySetNewRecord(_logic.GetPoints(), name);
-                // _renderer.RenderMenu();
-                _renderer.RenderEndGame(_config, _logic.GetPoints());
+                
             }
-            _input = false;
         }
     };
 };

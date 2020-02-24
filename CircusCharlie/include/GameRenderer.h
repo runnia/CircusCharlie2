@@ -34,6 +34,8 @@ public:
         _glcd = glcd;
     };
 
+    uint8_t renderCount = 116;
+
     void RenderMenu()
     {
         _glcd.clrScr();
@@ -337,6 +339,42 @@ public:
         _glcd.setFont(SmallFont);
         String stringScore = String(score);
         _glcd.print(stringScore, 12, 210, 270);
+    }
+
+    void RenderWin(const uint8_t &color)
+    {
+        if (color == 1)
+            currentColor = VGA_BLUE;
+        if (color == 2)
+            currentColor = VGA_GREEN;
+        if (color == 3)
+            currentColor = VGA_YELLOW;
+        _glcd.setColor(VGA_AQUA);
+        _glcd.fillRect(170,35,199,0);
+        for (int i = 1; i < 15;i++)
+        {
+        _glcd.drawBitmap (180, 260-i*16,16, 23, charlie1, 270, 8,11, currentColor, 0);
+        _glcd.setColor(currentColor);
+        _glcd.fillRect(170, 280-(i-1)*16, 199, 260-i*16);
+        }
+        _glcd.drawBitmap (140, 36,16, 23, charlie2, 270, 8,11, currentColor, 0);
+        _glcd.fillRect(130, 55, 160, 35);
+        _glcd.drawBitmap (150, 15,16, 23, charlie1, 270, 8,11, currentColor, 0);
+        delay(1000);
+        _glcd.clrScr();
+        _glcd.setColor(VGA_WHITE);
+        _glcd.setBackColor(VGA_BLACK);
+        _glcd.setFont(BigFont);
+        _glcd.print("YOU WON!", 110, 230 , 270);
+        delay(1000);
+        _glcd.clrScr();
+        _glcd.setColor(VGA_PURPLE);
+        _glcd.print("YOU WON!", 110, 230 , 270);
+        delay(1000);
+        _glcd.setColor(VGA_WHITE);
+        _glcd.print("YOU WON!", 110, 230 , 270);
+        delay(1000);
+
     }
 
     void RenderSettings(Configuration &config)
