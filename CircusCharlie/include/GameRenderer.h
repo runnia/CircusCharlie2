@@ -5,7 +5,7 @@
 #include "charlie1.c"
 #include "charlie2.c"
 #include "fire1.c"
-#include "fire2.c"
+#include "fire2_1.c"
 #include "heart.c"
 
 //unsigned short charlie[368]={};
@@ -154,7 +154,7 @@ public:
                     }
                     else
                     {
-                    _glcd.drawBitmap (178, 320 - 20 * i,18, 26, fire2, 270, 9,13, currentColor, 0);
+                    _glcd.drawBitmap (178, 320 - 20 * i,18, 26, fire2_1, 270, 9,13, currentColor, 0);
                     }
                     _glcd.setColor(currentColor);
                     // _glcd.fillRect(170, 320 -  18 * (i+1),199,20 -  18 * (i+2));
@@ -240,18 +240,21 @@ public:
         //Serial.print(posPath);
         //_glcd.print("70", 220, 100, 270);
         _glcd.setColor(currentColor);
-        if ((renderCount > 70) && (renderCount < 90) )
+        if ((renderCount > 80) && (renderCount < 100) )
             {
                 _glcd.print("70", 210, 330 - posPath*15, 270);
-                //_glcd.fillRect(210, 320 - (posPath)*15,225,320 - (posPath-1)*15);
+                _glcd.fillRect(210, 330 - (posPath+1)*15,225,320 - (posPath+2)*15);
                 posPath --;
             }
-        if (posPath == 0)
+        if (posPath < 2)
+        {   
+            _glcd.fillRect(210, 320,225,270);
             posPath = 20;
-        if ((renderCount > 20) && (renderCount < 50) )
+        }
+        if ((renderCount > 30) && (renderCount < 50) )
             {  
                 _glcd.print("30", 210, 330 - posPath*15, 270);
-                //_glcd.fillRect(210, 320 - (posPath-1)*15-1,225,320 - (posPath-2)*15);
+                _glcd.fillRect(210, 330 - (posPath+1)*15,225,320 - (posPath+2)*15);
                 posPath --;
             }
 
